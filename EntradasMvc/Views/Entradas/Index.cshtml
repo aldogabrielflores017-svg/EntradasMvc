@@ -1,6 +1,13 @@
-﻿@model EntradasMvc.Models.Cotizacion
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@model EntradasMvc.ViewModels.CotizacionInputViewModel
 @{
     ViewData["Title"] = "Cotizar entradas";
+
+    var tiposEntrada = new List<SelectListItem>
+    {
+        new SelectListItem { Value = "General", Text = "General" },
+        new SelectListItem { Value = "VIP", Text = "VIP" }
+    };
 }
 
 <h1>Cotizar entradas</h1>
@@ -19,6 +26,14 @@
         <label asp-for="Cantidad" class="form-label"></label>
         <input asp-for="Cantidad" class="form-control" />
         <span asp-validation-for="Cantidad" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="TipoEntrada" class="form-label"></label>
+        <select asp-for="TipoEntrada" asp-items="tiposEntrada" class="form-control">
+            <option value="">-- Seleccione un tipo --</option>
+        </select>
+        <span asp-validation-for="TipoEntrada" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Calcular</button>
